@@ -6,7 +6,9 @@ import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -40,6 +42,7 @@ public abstract class Game extends Activity implements Runnable, View.OnKeyListe
     private Screen screen;
     private Canvas canvas; // Logical virtual screen 320 X 400
     private Bitmap offscreenSurface;
+    private Paint paint = new Paint();
 
     private boolean pressedKeys[] = new boolean[256];
     private KeyEventPool keyEventPool = new KeyEventPool();
@@ -144,12 +147,13 @@ public abstract class Game extends Activity implements Runnable, View.OnKeyListe
                 if (!surfaceHolder.getSurface().isValid()) continue;
                 Canvas physicalCanvas = surfaceHolder.lockCanvas();
 
-
+                fillEvents();
                 currentTime = System.nanoTime();
                 // here we should do some drawings on the screen
                 if (screen != null)
                     screen.update((currentTime - lastTime)/1000000000.0f);
                 lastTime = currentTime;
+                freeEvents();
                 src.left = 0;
                 src.top = 0;
                 src.right = offscreenSurface.getWidth() - 1;
@@ -218,6 +222,24 @@ public abstract class Game extends Activity implements Runnable, View.OnKeyListe
         canvas = new Canvas(offscreenSurface);
     }
 
+    public Typeface loadFont(String fileName)
+    {
+        Typeface font = Typeface.createFromAsset(getAssets(), fileName);
+        if (font == null)
+        {
+            throw new RuntimeException("Could not load font from asset " + fileName);
+        }
+        return font;
+    }
+
+    public void drawText(Typeface font, String text, int x, int y, int color, int size)
+    {
+        paint.setTypeface(font);
+        paint.setTextSize(size);
+        paint.setColor(color);
+        canvas.drawText(text, x, y + size, paint);
+    }
+
     // It is standard to use bitmap graphics in Android
     public Bitmap loadBitmap(String fileName)
     {
@@ -249,6 +271,43 @@ public abstract class Game extends Activity implements Runnable, View.OnKeyListe
                 }
             }
         }
+    }
+
+    public void drawBitmap(Bitmap bitmap, int x, int y)
+    {
+        if (canvas == null) return;
+
+        canvas.drawBitmap(bitmap, x, y, null);
+    }
+
+    Rect src = new Rect();
+    Rect dst = new Rect();
+
+    /**
+     * Draw parts of a bitmap
+     *
+     * @param bitmap    object to be drawn
+     * @param x         coordinate on screen
+     * @param y
+     * @param srcX      coordinate on picture (bitmap)
+     * @param srcY
+     * @param srcWidth  size of part of the picture
+     * @param srcHeight
+     */
+    public void drawBitmap(Bitmap bitmap, int x, int y, int srcX, int srcY, int srcWidth, int srcHeight)
+    {
+        if (canvas == null) return;
+        src.left = srcX;
+        src.top = srcY;
+        src.right = srcX + srcWidth;
+        src.bottom = srcY + srcHeight;
+
+        dst.left = x;
+        dst.top = y;
+        dst.right = x + srcWidth;
+        dst.bottom = y + srcHeight;
+
+        canvas.drawBitmap(bitmap, src, dst, null);
     }
 
     public Music loadMusic(String fileName)
@@ -300,43 +359,6 @@ public abstract class Game extends Activity implements Runnable, View.OnKeyListe
     public int getOffscreenHeight()
     {
         return offscreenSurface.getHeight();
-    }
-
-    public void drawBitmap(Bitmap bitmap, int x, int y)
-    {
-        if (canvas == null) return;
-
-        canvas.drawBitmap(bitmap, x, y, null);
-    }
-
-    Rect src = new Rect();
-    Rect dst = new Rect();
-
-    /**
-     * Draw parts of a bitmap
-     *
-     * @param bitmap    object to be drawn
-     * @param x         coordinate on screen
-     * @param y
-     * @param srcX      coordinate on picture (bitmap)
-     * @param srcY
-     * @param srcWidth  size of part of the picture
-     * @param srcHeight
-     */
-    public void drawBitmap(Bitmap bitmap, int x, int y, int srcX, int srcY, int srcWidth, int srcHeight)
-    {
-        if (canvas == null) return;
-        src.left = srcX;
-        src.top = srcY;
-        src.right = srcX + srcWidth;
-        src.bottom = srcY + srcHeight;
-
-        dst.left = x;
-        dst.top = y;
-        dst.right = x + srcWidth;
-        dst.bottom = y + srcHeight;
-
-        canvas.drawBitmap(bitmap, src, dst, null);
     }
 
     @Override
@@ -419,6 +441,7 @@ public abstract class Game extends Activity implements Runnable, View.OnKeyListe
             {
                 keyEventPool.free(keyEvents.get(i));
             }
+            keyEvents.clear();
         }
 
         synchronized (touchEvents)
@@ -428,6 +451,7 @@ public abstract class Game extends Activity implements Runnable, View.OnKeyListe
             {
                 touchEventPool.free(touchEvents.get(i));
             }
+            touchEvents.clear();
         }
     }
 

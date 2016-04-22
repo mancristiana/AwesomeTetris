@@ -44,21 +44,11 @@ public class World
             fallTime = 0;
         }
 
-
-        touchTime += deltaTime;
-        if (touchTime > 0.1f)
+        int offX = -(int) (accelX * 25 * deltaTime);
+        Log.d("WORLD", " OFFX = " + offX);
+        if (grid.moveIsPossible(offX, 0))
         {
-            // TEST x
-            int offX = random.nextInt(3) - 1;
-            Log.d("WORLD", " OFFX = " + offX);
-            if (grid.moveIsPossible(offX, 0))
-            {
-                grid.moveTetramino(offX, 0);
-            }
-
-            touchTime = 0;
+            grid.moveTetramino(offX, 0);
         }
     }
-
-
 }

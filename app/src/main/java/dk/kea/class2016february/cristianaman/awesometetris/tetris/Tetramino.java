@@ -21,6 +21,9 @@ public class Tetramino
         // Add tetramino to the grid
         for (Position position : positions)
         {
+            if (grid.hasMino(position.x, position.y))
+                grid.setGameOver(true);
+
             grid.setMino(position.x, position.y, type, initialVelocity);
         }
     }

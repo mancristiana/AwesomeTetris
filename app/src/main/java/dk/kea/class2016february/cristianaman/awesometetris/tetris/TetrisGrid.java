@@ -16,9 +16,12 @@ public class TetrisGrid
     private Random random;
     private Tetramino tetramino;
 
+    private boolean gameOver;
+
     public TetrisGrid()
     {
         random = new Random();
+        gameOver = false;
         grid = new Mino[WIDTH][HEIGHT];
         for (int i = 0; i < WIDTH; i++)
             for (int j = 0; j < HEIGHT; j++)
@@ -90,7 +93,7 @@ public class TetrisGrid
 
     private void moveMino(int currentX, int currentY, int newX, int newY)
     {
-        if(currentX == newX && currentY == newY)
+        if (currentX == newX && currentY == newY)
             return;
 //        // check if there is space on the new position
         if (!isSpaceOn(newX, newY))
@@ -128,11 +131,13 @@ public class TetrisGrid
 
     /**
      * This method checks whether tetramino can be moved on the space specified by offset
+     *
      * @param offsetX delta between new x and old x
      * @param offsetY
      * @return
      */
-    public boolean moveIsPossible(int offsetX, int offsetY) {
+    public boolean moveIsPossible(int offsetX, int offsetY)
+    {
         int newX, newY;
         for (Position position : tetramino.positions)
         {
@@ -145,5 +150,15 @@ public class TetrisGrid
                 return false;
         }
         return true;
+    }
+
+    public boolean isGameOver()
+    {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver)
+    {
+        this.gameOver = gameOver;
     }
 }
