@@ -1,5 +1,7 @@
 package dk.kea.class2016february.cristianaman.awesometetris.tetris;
 
+import android.util.Log;
+
 import java.util.Collections;
 import java.util.Random;
 
@@ -39,22 +41,22 @@ public class TetrisGrid
     public boolean hasMino(int x, int y)
     {
         // Check if the position is on the tetris grid
-        if(x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
+        if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
             return false;
-        return !isSpaceOn(x,y);
+        return !isSpaceOn(x, y);
     }
 
     /**
      * Checks if there is space on position given by params
+     *
      * @param x
      * @param y
-     * @return true if on pos there is a Mino of type Blank or Ghost, false otherwise
      * @return false if position is not on the grid
      */
     public boolean isSpaceOn(int x, int y)
     {
         // Check if the position is on the tetris grid
-        if(x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+        if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
             return false;
 
         BlockType type = getMino(x, y).getType();
@@ -88,7 +90,9 @@ public class TetrisGrid
 
     private void moveMino(int currentX, int currentY, int newX, int newY)
     {
-        // check if there is space on the new position
+        if(currentX == newX && currentY == newY)
+            return;
+//        // check if there is space on the new position
         if (!isSpaceOn(newX, newY))
             throw new RuntimeException("Minos can't overlap");
 
@@ -97,35 +101,49 @@ public class TetrisGrid
         setMino(currentX, currentY, BlockType.Blank, 0);
     }
 
+    /**
+     * This method moves a tetramino by given offsets
+     *
+     * @param offsetX
+     * @param offsetY
+     * @return true if move was possible, false otherwise
+     */
     public void moveTetramino(int offsetX, int offsetY)
     {
-        Collections.sort(tetramino.positions);
-        for(Position position: tetramino.positions) {
-            
-            moveMino(position.x, position.y, position.x + offsetX, position.y + offsetY);
+        Log.d("MOVE TETRAMINO", "OFFSET X = " + offsetX + " OFFSET Y = " + offsetY);
+        Collections.sort(tetramino.positions, new PositionComparator(offsetX));
+        Log.d("MOVE TETRAMINO LIST: ", tetramino.positions.toString());
+        // TODO sort by offset!
+        for (Position position : tetramino.positions)
+        {
+            moveMino(position.x,
+                    position.y,
+                    position.x + offsetX,
+                    position.y + offsetY);
+
             position.x += offsetX;
             position.y += offsetY;
         }
-
     }
 
     /**
-     * This method checks whether the current tetramino is colliding with any pieces at the bottom
-     * @return true if tetramino has collided and can no longer fall down
+     * This method checks whether tetramino can be moved on the space specified by offset
+     * @param offsetX delta between new x and old x
+     * @param offsetY
+     * @return
      */
-    public boolean hasCollision()
-    {
-        boolean isCollision = false;
-//
-//        int minX = WIDTH, maxX = 0, minY = HEIGHT, maxY = 0;
-//        for(Position position : tetramino.positions)
-//        {
-//
-//        }
-//
-//        isCollision &= !isSpaceOn(position.x, position.y + 1);
-        return  isCollision;
+    public boolean moveIsPossible(int offsetX, int offsetY) {
+        int newX, newY;
+        for (Position position : tetramino.positions)
+        {
+            newX = position.x + offsetX;
+            newY = position.y + offsetY;
+
+            // Move is impossible if there is no space
+            // and the mino that is occupying the space is not part of the tetrimino
+            if (!isSpaceOn(newX, newY) && !tetramino.contains(newX, newY))
+                return false;
+        }
+        return true;
     }
-
-
 }

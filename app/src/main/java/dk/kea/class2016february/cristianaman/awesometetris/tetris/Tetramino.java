@@ -88,4 +88,19 @@ public class Tetramino
             grid.get()[position.x][position.y].setVelocity(0);
         }
     }
+
+    /**
+     * This method checks whether the mino on the given position is part of this tetrimino
+     *
+     * @param x coordinate x of the given mino
+     * @param y coordinate y of the given mino
+     * @return true if mino is part of this tetrmino
+     */
+    public boolean contains(int x, int y)
+    {
+        for (Position position : positions)
+            if (position.x == x && position.y == y)
+                return true;
+        return false;
+    }
 }

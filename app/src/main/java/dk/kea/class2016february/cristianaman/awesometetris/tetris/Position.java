@@ -18,6 +18,8 @@ public class Position implements Comparable<Position>
         this.y = y;
     }
 
+
+    // DEFAULT COMPARATOR sorts by Y DESC then X DESC
     @Override
     public int compareTo(Position another)
     {
@@ -29,5 +31,14 @@ public class Position implements Comparable<Position>
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Pos{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
