@@ -26,7 +26,6 @@ public class TetrisGrid
         for (int i = 0; i < WIDTH; i++)
             for (int j = 0; j < HEIGHT; j++)
                 grid[i][j] = new Mino(BlockType.Blank, 0);
-        createTetramino();
     }
 
     public void clear()
@@ -82,8 +81,9 @@ public class TetrisGrid
      */
     public void createTetramino()
     {
-        int type = random.nextInt(7);
-        tetramino = new Tetramino(this, BlockType.fromInteger(type));
+        BlockType type = BlockType.fromInteger(random.nextInt(7));
+        tetramino = new Tetramino(type);
+        tetramino.addTo(this);
     }
 
     public Tetramino getTetramino()
@@ -116,17 +116,15 @@ public class TetrisGrid
         Log.d("MOVE TETRAMINO", "OFFSET X = " + offsetX + " OFFSET Y = " + offsetY);
         Collections.sort(tetramino.positions, new PositionComparator(offsetX));
         Log.d("MOVE TETRAMINO LIST: ", tetramino.positions.toString());
-        // TODO sort by offset!
+
         for (Position position : tetramino.positions)
         {
             moveMino(position.x,
                     position.y,
                     position.x + offsetX,
                     position.y + offsetY);
-
-            position.x += offsetX;
-            position.y += offsetY;
         }
+        tetramino.move(offsetX, offsetY);
     }
 
     /**
@@ -160,5 +158,24 @@ public class TetrisGrid
     public void setGameOver(boolean gameOver)
     {
         this.gameOver = gameOver;
+    }
+
+    public boolean rotateIsPossible()
+    {
+        for (Position position : tetramino.getRotated())
+        {
+            if (!isSpaceOn(position.x, position.y) && !tetramino.contains(position.x, position.y))
+                return false;
+        }
+        return true;
+    }
+
+    public void rotateTetramino()
+    {
+        for(Position position : tetramino.positions)
+            setMino(position.x, position.y, BlockType.Blank, 0);
+        tetramino.rotate();
+        for (Position position : tetramino.positions)
+            setMino(position.x, position.y, tetramino.getType(), 1);
     }
 }

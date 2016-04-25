@@ -1,5 +1,7 @@
 package dk.kea.class2016february.cristianaman.awesometetris.tetris;
 
+import android.media.audiofx.Equalizer;
+
 /**
  * Created by mancr on 21/04/2016.
  */
@@ -31,6 +33,19 @@ public class Position implements Comparable<Position>
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Position position = (Position) o;
+
+        if (x != position.x) return false;
+        return y == position.y;
+
     }
 
     @Override

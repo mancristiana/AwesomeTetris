@@ -45,18 +45,10 @@ public class GameScreen extends Screen
         {
             state = State.Running; // unpause
         }
-        if (state == State.GameOver) // if game over
+        if (state == State.GameOver && game.isTouchEventUp()) // if game over
         {
-            List<TouchEvent> events = game.getTouchEvents();
-            int stop = events.size();
-            for (int i = 0; i < stop; i++)
-            {
-                if (events.get(i).type == TouchEvent.TouchEventType.Up)
-                {
-                    game.setScreen(new MainMenuScreen(game)); // start new game
-                    return;
-                }
-            }
+            game.setScreen(new MainMenuScreen(game)); // start new game
+            return;
         }
         if (state == State.Running && game.getTouchY(0) < 36 && game.getTouchX(0) > 320 - 36) // if touched when running
         {
@@ -66,9 +58,8 @@ public class GameScreen extends Screen
 
         if (state == State.Running)
         {
-            int touchX = -1;
-            if (game.isTouchDown(0)) touchX = game.getTouchX(0);
-            world.update(deltaTime, game.getAccelerometer()[0], touchX);
+            boolean isTapped = game.isTouchEventUp();
+            world.update(deltaTime, game.getAccelerometer()[0], isTapped);
         }
 
         game.drawBitmap(background, 0, 0);

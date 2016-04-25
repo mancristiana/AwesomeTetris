@@ -8,24 +8,20 @@ import java.util.List;
  */
 public class Tetramino
 {
-    List<Position> positions = new ArrayList<>();
+    List<Position> positions;
+    private Position topCorner;
+    private int sideOffset;
     private static final int initialX = 4;
     private static final int initialY = 0;
     private static final int initialVelocity = 1;
-    private TetrisGrid grid;
+    private BlockType type;
 
-    public Tetramino(TetrisGrid grid, BlockType type)
+    public Tetramino(BlockType type)
     {
-        this.grid = grid;
+        positions = new ArrayList<>();
+        topCorner = new Position(initialX - 1, initialY);
+        this.type = type;
         constructPositionList(type);
-        // Add tetramino to the grid
-        for (Position position : positions)
-        {
-            if (grid.hasMino(position.x, position.y))
-                grid.setGameOver(true);
-
-            grid.setMino(position.x, position.y, type, initialVelocity);
-        }
     }
 
     /**
@@ -80,11 +76,34 @@ public class Tetramino
                 positions.add(new Position(initialX, initialY));
                 positions.add(new Position(initialX + 1, initialY));
                 positions.add(new Position(initialX + 2, initialY));
+                topCorner.y--;
                 break;
         }
     }
 
-    public void stop()
+    public void addTo(TetrisGrid grid)
+    {
+        for (Position position : positions)
+        {
+            if (grid.hasMino(position.x, position.y))
+                grid.setGameOver(true);
+
+            grid.setMino(position.x, position.y, type, initialVelocity);
+        }
+    }
+
+    public void move(int offsetX, int offsetY)
+    {
+        topCorner.x += offsetX;
+        topCorner.y += offsetY;
+        for (Position position : positions)
+        {
+            position.x += offsetX;
+            position.y += offsetY;
+        }
+    }
+
+    public void stop(TetrisGrid grid)
     {
         for (Position position : positions)
         {
@@ -105,5 +124,80 @@ public class Tetramino
             if (position.x == x && position.y == y)
                 return true;
         return false;
+    }
+
+    public void rotate()
+    {
+        positions = getRotated();
+        topCorner.x += sideOffset;
+    }
+
+    public List<Position> getRotated()
+    {
+        List<Position> rotatedPositions = new ArrayList<>();
+
+
+        for (Position position : positions)
+        {
+            rotatedPositions.add(findNewPosition(position));
+        }
+        return rotatedPositions;
+    }
+
+    public Position findNewPosition(Position p)
+    {
+        int size = 3;
+        if (type.equals(BlockType.I_PINK_Block)) size = 4;
+        else if(type.equals(BlockType.Square_YELLOW_Block))
+            return p;
+
+        if (topCorner.x + size > TetrisGrid.WIDTH)
+        {
+            sideOffset = TetrisGrid.WIDTH - topCorner.x - size;
+        } else if (topCorner.x < 0)
+        {
+            sideOffset = -topCorner.x;
+        } else
+        {
+            sideOffset = 0;
+        }
+
+
+        int beforeX = 0;
+        for (int afterY = size - 1; afterY >= 0; afterY--)
+        {
+            int beforeY = 0;
+            for (int afterX = 0; afterX < size; afterX++)
+            {
+                if (beforeX == p.x - topCorner.x && beforeY == p.y - topCorner.y)
+                {
+                    return new Position(topCorner.x + afterX + sideOffset, topCorner.y + afterY);
+                }
+                beforeY++;
+            }
+            beforeX++;
+        }
+
+        return p;
+    }
+
+    public Position getTopCorner()
+    {
+        return topCorner;
+    }
+
+    public void setTopCorner(Position topCorner)
+    {
+        this.topCorner = topCorner;
+    }
+
+    public BlockType getType()
+    {
+        return type;
+    }
+
+    public void setType(BlockType type)
+    {
+        this.type = type;
     }
 }

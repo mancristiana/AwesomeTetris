@@ -389,6 +389,20 @@ public abstract class Game extends Activity implements Runnable, View.OnKeyListe
         return touchHandler.isTouchDown(pointer);
     }
 
+    public boolean isTouchEventUp()
+    {
+        List<TouchEvent> events = getTouchEvents();
+        int stop = events.size();
+        for (int i = 0; i < stop; i++)
+        {
+            if (events.get(i).type == TouchEvent.TouchEventType.Up)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getTouchX(int pointer)
     {
         return (int) ((float) touchHandler.getTouchX(pointer) * (float) offscreenSurface.getWidth() / (float) surfaceView.getWidth());
