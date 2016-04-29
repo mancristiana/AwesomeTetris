@@ -18,8 +18,7 @@ public class World
     private Random random;
 
     float fallTime = 0;
-    float touchTime = 0;
-    boolean isMoved;
+    float moveTime = 0;
 
     public World()
     {
@@ -28,9 +27,8 @@ public class World
         random = new Random();
     }
 
-    public void update(float deltaTime, float accelX, boolean isTapped)
+    public void update(float deltaTime, float accelX, boolean isTapped, boolean isDropped)
     {
-        isMoved = false;
         fallTime += deltaTime;
         if (fallTime > 0.5f) // TODO fall time is affected by level
         {
@@ -38,27 +36,37 @@ public class World
             if (grid.moveIsPossible(0, 1))
             {
                 grid.moveTetramino(0, 1);
-                isMoved = true;
             } else
             {
+                grid.updateHeight();
+                grid.removeLines();
                 grid.getTetramino().stop(grid);
                 grid.createTetramino();
-                isMoved = true;
             }
 
             fallTime = 0;
         }
 
-        int offX = -(int) (accelX * 10 * deltaTime);
-        Log.d("WORLD", " OFFX = " + offX);
-        if (grid.moveIsPossible(offX, 0))
+        moveTime += deltaTime;
+        int offX = (int) (accelX * 100 * deltaTime);
+        if (offX > 0) offX = -1;
+        else if (offX < 0) offX = 1;
+        moveTime += (Math.abs(accelX) < 1.5) ? 0 : Math.abs(Math.abs(accelX / 2) - 1.5f);
+
+        if (offX != 0)
+//            Log.d("WORLD", " OFFX = " + offX);
+            Log.d("ACCEL", accelX + "");
+        if (grid.moveIsPossible(offX, 0) && moveTime > 10)
         {
             grid.moveTetramino(offX, 0);
+            moveTime = 0;
         }
 
-        if(isTapped && grid.rotateIsPossible())
+        if (isTapped && grid.rotateIsPossible())
         {
             grid.rotateTetramino();
         }
+
+//        if (isDropped)
     }
 }

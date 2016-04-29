@@ -2,7 +2,9 @@ package dk.kea.class2016february.cristianaman.awesometetris.tetris;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -15,6 +17,8 @@ public class TetrisGrid
     private Mino[][] grid;
     private Random random;
     private Tetramino tetramino;
+    private Tetramino ghostpiece;
+    private int[] heightList;
 
     private boolean gameOver;
 
@@ -23,9 +27,14 @@ public class TetrisGrid
         random = new Random();
         gameOver = false;
         grid = new Mino[WIDTH][HEIGHT];
+        heightList = new int[WIDTH];
+
         for (int i = 0; i < WIDTH; i++)
+        {
             for (int j = 0; j < HEIGHT; j++)
                 grid[i][j] = new Mino(BlockType.Blank, 0);
+            heightList[i] = HEIGHT - 1;
+        }
     }
 
     public void clear()
@@ -84,6 +93,8 @@ public class TetrisGrid
         BlockType type = BlockType.fromInteger(random.nextInt(7));
         tetramino = new Tetramino(type);
         tetramino.addTo(this);
+        ghostpiece = tetramino.getGhost(heightList);
+        ghostpiece.addTo(this);
     }
 
     public Tetramino getTetramino()
@@ -113,9 +124,9 @@ public class TetrisGrid
      */
     public void moveTetramino(int offsetX, int offsetY)
     {
-        Log.d("MOVE TETRAMINO", "OFFSET X = " + offsetX + " OFFSET Y = " + offsetY);
+//        Log.d("MOVE TETRAMINO", "OFFSET X = " + offsetX + " OFFSET Y = " + offsetY);
         Collections.sort(tetramino.positions, new PositionComparator(offsetX));
-        Log.d("MOVE TETRAMINO LIST: ", tetramino.positions.toString());
+//        Log.d("MOVE TETRAMINO LIST: ", tetramino.positions.toString());
 
         for (Position position : tetramino.positions)
         {
@@ -125,6 +136,7 @@ public class TetrisGrid
                     position.y + offsetY);
         }
         tetramino.move(offsetX, offsetY);
+        updateGhost();
     }
 
     /**
@@ -172,10 +184,69 @@ public class TetrisGrid
 
     public void rotateTetramino()
     {
-        for(Position position : tetramino.positions)
+        for (Position position : tetramino.positions)
             setMino(position.x, position.y, BlockType.Blank, 0);
         tetramino.rotate();
         for (Position position : tetramino.positions)
             setMino(position.x, position.y, tetramino.getType(), 1);
+    }
+
+    public void removeLines()
+    {
+        int removed = 0;
+        int y = HEIGHT - 1;
+        while (y >= 0)
+        {
+            if (isCompleteLine(y))
+            {
+                removeLine(y);
+                removed++;
+            } else
+            {
+                y--;
+            }
+        }
+        for (int i = 0; i < WIDTH; i++)
+            heightList[i] += removed;
+    }
+
+    public boolean isCompleteLine(int indexY)
+    {
+        int minoCount = 0;
+        for (int x = 0; x < WIDTH; x++)
+        {
+            if (hasMino(x, indexY))
+                minoCount++;
+        }
+        return minoCount == WIDTH;
+    }
+
+    public void removeLine(int indexY)
+    {
+        for (int y = indexY; y > 0; y--)
+            for (int x = 0; x < WIDTH; x++)
+            {
+//                grid[x][y] = grid[x][y-1]
+                Mino minoAbove = getMino(x, y - 1);
+                setMino(x, y, minoAbove.getType(), minoAbove.getVelocity());
+            }
+    }
+
+    public void updateHeight()
+    {
+        for (Position position : tetramino.positions)
+        {
+            if (position.y < heightList[position.x])
+                heightList[position.x] = position.y;
+        }
+    }
+
+    public void updateGhost()
+    {
+        for (Position position : ghostpiece.positions)
+            if (isSpaceOn(position.x, position.y))
+                setMino(position.x, position.y, BlockType.Blank, 0);
+        ghostpiece = tetramino.getGhost(heightList);
+        ghostpiece.addTo(this);
     }
 }

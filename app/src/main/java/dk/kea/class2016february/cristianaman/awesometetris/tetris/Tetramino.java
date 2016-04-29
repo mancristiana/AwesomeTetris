@@ -1,6 +1,7 @@
 package dk.kea.class2016february.cristianaman.awesometetris.tetris;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -85,10 +86,13 @@ public class Tetramino
     {
         for (Position position : positions)
         {
-            if (grid.hasMino(position.x, position.y))
-                grid.setGameOver(true);
-
-            grid.setMino(position.x, position.y, type, initialVelocity);
+            if (!grid.isSpaceOn(position.x, position.y))
+            {
+                if(!type.equals(BlockType.Ghost))
+                    grid.setGameOver(true);
+            }
+            else
+                grid.setMino(position.x, position.y, type, initialVelocity);
         }
     }
 
@@ -148,7 +152,7 @@ public class Tetramino
     {
         int size = 3;
         if (type.equals(BlockType.I_PINK_Block)) size = 4;
-        else if(type.equals(BlockType.Square_YELLOW_Block))
+        else if (type.equals(BlockType.Square_YELLOW_Block))
             return p;
 
         if (topCorner.x + size > TetrisGrid.WIDTH)
@@ -199,5 +203,30 @@ public class Tetramino
     public void setType(BlockType type)
     {
         this.type = type;
+    }
+
+    public Tetramino getGhost(int[] heightList)
+    {
+        Tetramino ghostpiece = new Tetramino(BlockType.Ghost);
+        int offsetY = TetrisGrid.HEIGHT;
+        int minX = TetrisGrid.WIDTH, maxX = 0;
+        for (Position position : positions)
+        {
+            if(maxX < position.x)
+                maxX = position.x;
+            if(minX > position.x)
+                minX = position.x;
+
+        }
+        for (int i = minX; i < maxX; i++)
+            if (offsetY > heightList[i])
+                offsetY = heightList[i];
+        Collections.sort(positions, new PositionComparator());
+        offsetY -= positions.get(0).y;
+        for (Position position : positions)
+        {
+            ghostpiece.positions.add(new Position(position.x, position.y + offsetY));
+        }
+        return ghostpiece;
     }
 }

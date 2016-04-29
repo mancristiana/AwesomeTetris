@@ -59,7 +59,8 @@ public class GameScreen extends Screen
         if (state == State.Running)
         {
             boolean isTapped = game.isTouchEventUp();
-            world.update(deltaTime, game.getAccelerometer()[0], isTapped);
+            boolean isDropped = game.isTouchEventUp() && game.getTouchY(0) > 400;
+            world.update(deltaTime, game.getAccelerometer()[0], isTapped && !isDropped, isDropped);
         }
 
         game.drawBitmap(background, 0, 0);
