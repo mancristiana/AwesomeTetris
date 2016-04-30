@@ -17,8 +17,7 @@ public class TetrisGrid
     private Mino[][] grid;
     private Random random;
     private Tetramino tetramino;
-    private Tetramino ghostpiece;
-    private int[] heightList;
+    private Tetramino ghost;
 
     private boolean gameOver;
 
@@ -27,14 +26,11 @@ public class TetrisGrid
         random = new Random();
         gameOver = false;
         grid = new Mino[WIDTH][HEIGHT];
-        heightList = new int[WIDTH];
-
+        ghost = new Tetramino(BlockType.Ghost);
         for (int i = 0; i < WIDTH; i++)
-        {
             for (int j = 0; j < HEIGHT; j++)
                 grid[i][j] = new Mino(BlockType.Blank, 0);
-            heightList[i] = HEIGHT - 1;
-        }
+
     }
 
     public void clear()
@@ -93,8 +89,7 @@ public class TetrisGrid
         BlockType type = BlockType.fromInteger(random.nextInt(7));
         tetramino = new Tetramino(type);
         tetramino.addTo(this);
-        ghostpiece = tetramino.getGhost(heightList);
-        ghostpiece.addTo(this);
+        drawGhost();
     }
 
     public Tetramino getTetramino()
@@ -136,7 +131,7 @@ public class TetrisGrid
                     position.y + offsetY);
         }
         tetramino.move(offsetX, offsetY);
-        updateGhost();
+        drawGhost();
     }
 
     /**
@@ -189,25 +184,22 @@ public class TetrisGrid
         tetramino.rotate();
         for (Position position : tetramino.positions)
             setMino(position.x, position.y, tetramino.getType(), 1);
+        drawGhost();
     }
 
     public void removeLines()
     {
-        int removed = 0;
         int y = HEIGHT - 1;
         while (y >= 0)
         {
             if (isCompleteLine(y))
             {
                 removeLine(y);
-                removed++;
             } else
             {
                 y--;
             }
         }
-        for (int i = 0; i < WIDTH; i++)
-            heightList[i] += removed;
     }
 
     public boolean isCompleteLine(int indexY)
@@ -232,21 +224,40 @@ public class TetrisGrid
             }
     }
 
-    public void updateHeight()
+    public void drawGhost()
     {
-        for (Position position : tetramino.positions)
+        for (int i = 0; i < 4; i++)
         {
-            if (position.y < heightList[position.x])
-                heightList[position.x] = position.y;
+            Position ghostP = ghost.positions.get(i);
+            Position pieceP = tetramino.positions.get(i);
+
+            // Clear minos on old ghost positions
+            if (isSpaceOn(ghostP.x, ghostP.y))
+                setMino(ghostP.x, ghostP.y, BlockType.Blank, 0);
+
+            // Set new position for ghost which is the current position for the tetramino
+            ghostP.x = pieceP.x;
+            ghostP.y = pieceP.y;
         }
+
+        // Get the dropped offset for ghost
+        int offY = 0;
+        while (moveIsPossible(0, offY))
+            offY++;
+        ghost.move(0, offY - 1);
+
+        // Draw ghost
+        for (Position position : ghost.positions)
+        {
+            if (isSpaceOn(position.x, position.y))
+                setMino(position.x, position.y, BlockType.Ghost, 0);
+        }
+
     }
 
-    public void updateGhost()
+    public void drop()
     {
-        for (Position position : ghostpiece.positions)
-            if (isSpaceOn(position.x, position.y))
-                setMino(position.x, position.y, BlockType.Blank, 0);
-        ghostpiece = tetramino.getGhost(heightList);
-        ghostpiece.addTo(this);
+        int offY = ghost.positions.get(0).y - tetramino.positions.get(0).y;
+        moveTetramino(0, offY);
     }
 }

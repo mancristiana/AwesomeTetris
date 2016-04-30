@@ -35,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/World.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+              <caret line="70" column="18" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -44,18 +44,26 @@
       <file leaf-file-name="TetrisGrid.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/TetrisGrid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5882353">
-              <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.48214287">
+              <caret line="91" column="20" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1944#1945#0" expanded="true" />
-                <element signature="e#1977#1978#0" expanded="true" />
+                <element signature="e#1076#1077#0" expanded="true" />
+                <element signature="e#1103#1104#0" expanded="true" />
+                <element signature="e#1860#1861#0" expanded="true" />
+                <element signature="e#1893#1894#0" expanded="true" />
+                <element signature="e#2400#2401#0" expanded="true" />
+                <element signature="e#2432#2433#0" expanded="true" />
                 <element signature="docComment;method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+                <element signature="method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+                <element signature="method#moveIsPossible#0;class#TetrisGrid#0" expanded="false" />
+                <element signature="e#4455#4456#0" expanded="true" />
+                <element signature="e#4486#4487#0" expanded="true" />
                 <element signature="method#rotateTetramino#0;class#TetrisGrid#0" expanded="false" />
                 <element signature="method#removeLines#0;class#TetrisGrid#0" expanded="false" />
                 <element signature="method#isCompleteLine#0;class#TetrisGrid#0" expanded="false" />
                 <element signature="method#removeLine#0;class#TetrisGrid#0" expanded="false" />
-                <element signature="method#updateHeight#0;class#TetrisGrid#0" expanded="false" />
+                <element signature="method#drawGhost#0;class#TetrisGrid#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -85,11 +93,14 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/Tetramino.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="224" column="37" selection-start-line="224" selection-start-column="37" selection-end-line="224" selection-end-column="37" />
+              <caret line="115" column="18" selection-start-line="115" selection-start-column="18" selection-end-line="115" selection-end-column="18" />
               <folding>
-                <element signature="method#move#0;class#Tetramino#0" expanded="false" />
+                <element signature="method#rotate#0;class#Tetramino#0" expanded="false" />
                 <element signature="method#getRotated#0;class#Tetramino#0" expanded="false" />
-                <element signature="method#findNewPosition#0;class#Tetramino#0" expanded="false" />
+                <element signature="e#6568#6569#0" expanded="true" />
+                <element signature="e#6595#6596#0" expanded="true" />
+                <element signature="e#6642#6643#0" expanded="true" />
+                <element signature="e#6674#6675#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1672,8 +1683,8 @@
         <option value="$PROJECT_DIR$/app/src/androidTest/java/dk/kea/class2016february/cristianaman/awesometetris/test/RotationTest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/Game.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/GameScreen.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/World.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/Tetramino.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/World.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/TetrisGrid.java" />
       </list>
     </option>
@@ -1966,7 +1977,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1732" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329927" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1976,7 +1987,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26642334" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5116788" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32846716" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1986,7 +1997,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2006,16 +2017,16 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38613138" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.51240873" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329927" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2024,7 +2035,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -2042,7 +2053,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -2060,14 +2073,22 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1944#1945#0" expanded="true" />
-            <element signature="e#1977#1978#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1103#1104#0" expanded="true" />
+            <element signature="e#1860#1861#0" expanded="true" />
+            <element signature="e#1893#1894#0" expanded="true" />
+            <element signature="e#2400#2401#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="true" />
             <element signature="docComment;method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#moveIsPossible#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="e#4455#4456#0" expanded="true" />
+            <element signature="e#4486#4487#0" expanded="true" />
             <element signature="method#rotateTetramino#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#removeLines#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#isCompleteLine#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#removeLine#0;class#TetrisGrid#0" expanded="false" />
-            <element signature="method#updateHeight#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#drawGhost#0;class#TetrisGrid#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2093,9 +2114,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="224" column="37" selection-start-line="224" selection-start-column="37" selection-end-line="224" selection-end-column="37" />
           <folding>
-            <element signature="method#move#0;class#Tetramino#0" expanded="false" />
+            <element signature="method#rotate#0;class#Tetramino#0" expanded="false" />
             <element signature="method#getRotated#0;class#Tetramino#0" expanded="false" />
-            <element signature="method#findNewPosition#0;class#Tetramino#0" expanded="false" />
+            <element signature="e#6568#6569#0" expanded="true" />
+            <element signature="e#6595#6596#0" expanded="true" />
+            <element signature="e#6642#6643#0" expanded="true" />
+            <element signature="e#6674#6675#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2122,14 +2146,22 @@
           <caret line="247" column="35" selection-start-line="247" selection-start-column="35" selection-end-line="247" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1944#1945#0" expanded="true" />
-            <element signature="e#1977#1978#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1103#1104#0" expanded="true" />
+            <element signature="e#1860#1861#0" expanded="true" />
+            <element signature="e#1893#1894#0" expanded="true" />
+            <element signature="e#2400#2401#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="true" />
             <element signature="docComment;method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#moveIsPossible#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="e#4455#4456#0" expanded="true" />
+            <element signature="e#4486#4487#0" expanded="true" />
             <element signature="method#rotateTetramino#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#removeLines#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#isCompleteLine#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#removeLine#0;class#TetrisGrid#0" expanded="false" />
-            <element signature="method#updateHeight#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#drawGhost#0;class#TetrisGrid#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2155,9 +2187,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#move#0;class#Tetramino#0" expanded="false" />
+            <element signature="method#rotate#0;class#Tetramino#0" expanded="false" />
             <element signature="method#getRotated#0;class#Tetramino#0" expanded="false" />
-            <element signature="method#findNewPosition#0;class#Tetramino#0" expanded="false" />
+            <element signature="e#6568#6569#0" expanded="true" />
+            <element signature="e#6595#6596#0" expanded="true" />
+            <element signature="e#6642#6643#0" expanded="true" />
+            <element signature="e#6674#6675#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2184,14 +2219,22 @@
           <caret line="117" column="13" selection-start-line="117" selection-start-column="10" selection-end-line="117" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1944#1945#0" expanded="true" />
-            <element signature="e#1977#1978#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1103#1104#0" expanded="true" />
+            <element signature="e#1860#1861#0" expanded="true" />
+            <element signature="e#1893#1894#0" expanded="true" />
+            <element signature="e#2400#2401#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="true" />
             <element signature="docComment;method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#moveIsPossible#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="e#4455#4456#0" expanded="true" />
+            <element signature="e#4486#4487#0" expanded="true" />
             <element signature="method#rotateTetramino#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#removeLines#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#isCompleteLine#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#removeLine#0;class#TetrisGrid#0" expanded="false" />
-            <element signature="method#updateHeight#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#drawGhost#0;class#TetrisGrid#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2217,9 +2260,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
           <folding>
-            <element signature="method#move#0;class#Tetramino#0" expanded="false" />
+            <element signature="method#rotate#0;class#Tetramino#0" expanded="false" />
             <element signature="method#getRotated#0;class#Tetramino#0" expanded="false" />
-            <element signature="method#findNewPosition#0;class#Tetramino#0" expanded="false" />
+            <element signature="e#6568#6569#0" expanded="true" />
+            <element signature="e#6595#6596#0" expanded="true" />
+            <element signature="e#6642#6643#0" expanded="true" />
+            <element signature="e#6674#6675#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2238,14 +2284,22 @@
           <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1944#1945#0" expanded="true" />
-            <element signature="e#1977#1978#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1103#1104#0" expanded="true" />
+            <element signature="e#1860#1861#0" expanded="true" />
+            <element signature="e#1893#1894#0" expanded="true" />
+            <element signature="e#2400#2401#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="true" />
             <element signature="docComment;method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#moveIsPossible#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="e#4455#4456#0" expanded="true" />
+            <element signature="e#4486#4487#0" expanded="true" />
             <element signature="method#rotateTetramino#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#removeLines#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#isCompleteLine#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#removeLine#0;class#TetrisGrid#0" expanded="false" />
-            <element signature="method#updateHeight#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#drawGhost#0;class#TetrisGrid#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2271,9 +2325,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#move#0;class#Tetramino#0" expanded="false" />
+            <element signature="method#rotate#0;class#Tetramino#0" expanded="false" />
             <element signature="method#getRotated#0;class#Tetramino#0" expanded="false" />
-            <element signature="method#findNewPosition#0;class#Tetramino#0" expanded="false" />
+            <element signature="e#6568#6569#0" expanded="true" />
+            <element signature="e#6595#6596#0" expanded="true" />
+            <element signature="e#6642#6643#0" expanded="true" />
+            <element signature="e#6674#6675#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2282,14 +2339,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1953757">
           <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="398" column="13" selection-start-line="398" selection-start-column="13" selection-end-line="398" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2297,6 +2349,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="61" column="79" selection-start-line="61" selection-start-column="79" selection-end-line="61" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/Tetramino.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="115" column="18" selection-start-line="115" selection-start-column="18" selection-end-line="115" selection-end-column="18" />
+          <folding>
+            <element signature="method#rotate#0;class#Tetramino#0" expanded="false" />
+            <element signature="method#getRotated#0;class#Tetramino#0" expanded="false" />
+            <element signature="e#6568#6569#0" expanded="true" />
+            <element signature="e#6595#6596#0" expanded="true" />
+            <element signature="e#6642#6643#0" expanded="true" />
+            <element signature="e#6674#6675#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="398" column="13" selection-start-line="398" selection-start-column="13" selection-end-line="398" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -2312,37 +2387,33 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/World.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+          <caret line="70" column="18" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/Tetramino.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="224" column="37" selection-start-line="224" selection-start-column="37" selection-end-line="224" selection-end-column="37" />
-          <folding>
-            <element signature="method#move#0;class#Tetramino#0" expanded="false" />
-            <element signature="method#getRotated#0;class#Tetramino#0" expanded="false" />
-            <element signature="method#findNewPosition#0;class#Tetramino#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/dk/kea/class2016february/cristianaman/awesometetris/tetris/TetrisGrid.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5882353">
-          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.48214287">
+          <caret line="91" column="20" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1944#1945#0" expanded="true" />
-            <element signature="e#1977#1978#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1103#1104#0" expanded="true" />
+            <element signature="e#1860#1861#0" expanded="true" />
+            <element signature="e#1893#1894#0" expanded="true" />
+            <element signature="e#2400#2401#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="true" />
             <element signature="docComment;method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#moveTetramino#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#moveIsPossible#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="e#4455#4456#0" expanded="true" />
+            <element signature="e#4486#4487#0" expanded="true" />
             <element signature="method#rotateTetramino#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#removeLines#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#isCompleteLine#0;class#TetrisGrid#0" expanded="false" />
             <element signature="method#removeLine#0;class#TetrisGrid#0" expanded="false" />
-            <element signature="method#updateHeight#0;class#TetrisGrid#0" expanded="false" />
+            <element signature="method#drawGhost#0;class#TetrisGrid#0" expanded="false" />
           </folding>
         </state>
       </provider>

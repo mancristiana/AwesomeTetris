@@ -79,6 +79,12 @@ public class Tetramino
                 positions.add(new Position(initialX + 2, initialY));
                 topCorner.y--;
                 break;
+            case Ghost:
+                positions.add(new Position(0, 0));
+                positions.add(new Position(0, 0));
+                positions.add(new Position(0, 0));
+                positions.add(new Position(0, 0));
+                break;
         }
     }
 
@@ -203,30 +209,5 @@ public class Tetramino
     public void setType(BlockType type)
     {
         this.type = type;
-    }
-
-    public Tetramino getGhost(int[] heightList)
-    {
-        Tetramino ghostpiece = new Tetramino(BlockType.Ghost);
-        int offsetY = TetrisGrid.HEIGHT;
-        int minX = TetrisGrid.WIDTH, maxX = 0;
-        for (Position position : positions)
-        {
-            if(maxX < position.x)
-                maxX = position.x;
-            if(minX > position.x)
-                minX = position.x;
-
-        }
-        for (int i = minX; i < maxX; i++)
-            if (offsetY > heightList[i])
-                offsetY = heightList[i];
-        Collections.sort(positions, new PositionComparator());
-        offsetY -= positions.get(0).y;
-        for (Position position : positions)
-        {
-            ghostpiece.positions.add(new Position(position.x, position.y + offsetY));
-        }
-        return ghostpiece;
     }
 }

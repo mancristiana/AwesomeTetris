@@ -38,7 +38,6 @@ public class World
                 grid.moveTetramino(0, 1);
             } else
             {
-                grid.updateHeight();
                 grid.removeLines();
                 grid.getTetramino().stop(grid);
                 grid.createTetramino();
@@ -67,6 +66,10 @@ public class World
             grid.rotateTetramino();
         }
 
-//        if (isDropped)
+        if (isDropped)
+        {
+            grid.drop();
+        }
+
     }
 }
