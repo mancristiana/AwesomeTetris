@@ -1,6 +1,7 @@
 package dk.kea.class2016february.cristianaman.awesometetris.tetris;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import dk.kea.class2016february.cristianaman.awesometetris.Game;
 import dk.kea.class2016february.cristianaman.awesometetris.Screen;
@@ -22,6 +23,7 @@ public class MainMenuScreen extends Screen
     {
         if(game.isTouchDown(0))
         {
+            Log.d("x", "x");
             game.setScreen(new GameScreen(game));
             return;
         }

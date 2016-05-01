@@ -25,12 +25,12 @@ public class WorldRenderer
         for (int i = 0; i < world.grid.WIDTH; i++)
             for (int j = 0; j < world.grid.HEIGHT; j++)
             {
-                Mino mino = world.grid.getMino(i, j);
-                if (mino.getType() != BlockType.Blank)
+                Mino mino = world.grid.get()[i][j];
+                if (mino != Mino.Blank)
                     game.drawBitmap(tetriminiosImage,
                             (int) (i * Mino.WIDTH + World.MIN_X),
                             (int) (j * Mino.HEIGHT + World.MIN_Y),
-                            0, (int) (mino.getType().ordinal() * Mino.HEIGHT),
+                            0, (int) (mino.ordinal() * Mino.HEIGHT),
                             (int) Mino.WIDTH, (int) Mino.HEIGHT);
             }
     }

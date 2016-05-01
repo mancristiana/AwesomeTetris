@@ -1,6 +1,7 @@
 package dk.kea.class2016february.cristianaman.awesometetris.tetris;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class GameScreen extends Screen
         background = game.loadBitmap("background.png");
         resume = game.loadBitmap("resume.png");
         gameOver = game.loadBitmap("gameover.png");
+        Log.d("GameScreen constructor", "");
         world = new World();
         renderer = new WorldRenderer(game, world);
 

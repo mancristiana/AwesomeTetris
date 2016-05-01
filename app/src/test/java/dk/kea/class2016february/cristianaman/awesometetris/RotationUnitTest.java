@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.List;
 
-import dk.kea.class2016february.cristianaman.awesometetris.tetris.BlockType;
+import dk.kea.class2016february.cristianaman.awesometetris.tetris.Mino;
 import dk.kea.class2016february.cristianaman.awesometetris.tetris.Position;
 import dk.kea.class2016february.cristianaman.awesometetris.tetris.PositionComparator;
 import dk.kea.class2016february.cristianaman.awesometetris.tetris.Tetramino;
@@ -21,7 +21,7 @@ public class RotationUnitTest
     public void tetrimino_get_rotated_90_Z_BLock()
     {
         // Arrange
-        Tetramino tetramino = new Tetramino(BlockType.Z_RED_Block);
+        Tetramino tetramino = new Tetramino(Mino.Z_RED_Block);
         int cornerX = tetramino.getTopCorner().x;
         int cornerY = tetramino.getTopCorner().y;
 
@@ -42,7 +42,7 @@ public class RotationUnitTest
     public void tetrimino_get_rotated_180_Z_BLock()
     {
         // Arrange
-        Tetramino tetramino = new Tetramino(BlockType.Z_RED_Block);
+        Tetramino tetramino = new Tetramino(Mino.Z_RED_Block);
         tetramino.rotate();
 
         int cornerX = tetramino.getTopCorner().x;
@@ -65,7 +65,7 @@ public class RotationUnitTest
     public void tetrimino_get_rotated_270_Z_BLock()
     {
         // Arrange
-        Tetramino tetramino = new Tetramino(BlockType.Z_RED_Block);
+        Tetramino tetramino = new Tetramino(Mino.Z_RED_Block);
         tetramino.rotate();
         tetramino.rotate();
 
@@ -89,7 +89,7 @@ public class RotationUnitTest
     public void tetrimino_get_rotated_360_Z_BLock()
     {
         // Arrange
-        Tetramino tetramino = new Tetramino(BlockType.Z_RED_Block);
+        Tetramino tetramino = new Tetramino(Mino.Z_RED_Block);
         tetramino.rotate();
         tetramino.rotate();
         tetramino.rotate();

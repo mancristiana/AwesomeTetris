@@ -22,6 +22,7 @@ public class World
 
     public World()
     {
+        Log.d("World constructor", "");
         grid = new TetrisGrid();
         grid.createTetramino();
         random = new Random();
@@ -39,7 +40,6 @@ public class World
             } else
             {
                 grid.removeLines();
-                grid.getTetramino().stop(grid);
                 grid.createTetramino();
             }
 

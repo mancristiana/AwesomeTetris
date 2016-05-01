@@ -1,7 +1,6 @@
 package dk.kea.class2016february.cristianaman.awesometetris.tetris;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,10 +13,9 @@ public class Tetramino
     private int sideOffset;
     private static final int initialX = 4;
     private static final int initialY = 0;
-    private static final int initialVelocity = 1;
-    private BlockType type;
+    private Mino type;
 
-    public Tetramino(BlockType type)
+    public Tetramino(Mino type)
     {
         positions = new ArrayList<>();
         topCorner = new Position(initialX - 1, initialY);
@@ -31,7 +29,7 @@ public class Tetramino
      *
      * @param type
      */
-    private void constructPositionList(BlockType type)
+    private void constructPositionList(Mino type)
     {
         positions.clear();
         switch (type)
@@ -94,11 +92,11 @@ public class Tetramino
         {
             if (!grid.isSpaceOn(position.x, position.y))
             {
-                if(!type.equals(BlockType.Ghost))
+                if(!type.equals(Mino.Ghost))
                     grid.setGameOver(true);
             }
             else
-                grid.setMino(position.x, position.y, type, initialVelocity);
+                grid.get()[position.x][position.y] = type;
         }
     }
 
@@ -113,15 +111,7 @@ public class Tetramino
         }
     }
 
-    public void stop(TetrisGrid grid)
-    {
-        for (Position position : positions)
-        {
-            grid.get()[position.x][position.y].setVelocity(0);
-        }
-    }
-
-    /**
+     /**
      * This method checks whether the mino on the given position is part of this tetrimino
      *
      * @param x coordinate x of the given mino
@@ -157,8 +147,8 @@ public class Tetramino
     public Position findNewPosition(Position p)
     {
         int size = 3;
-        if (type.equals(BlockType.I_PINK_Block)) size = 4;
-        else if (type.equals(BlockType.Square_YELLOW_Block))
+        if (type.equals(Mino.I_PINK_Block)) size = 4;
+        else if (type.equals(Mino.Square_YELLOW_Block))
             return p;
 
         if (topCorner.x + size > TetrisGrid.WIDTH)
@@ -201,12 +191,12 @@ public class Tetramino
         this.topCorner = topCorner;
     }
 
-    public BlockType getType()
+    public Mino getType()
     {
         return type;
     }
 
-    public void setType(BlockType type)
+    public void setType(Mino type)
     {
         this.type = type;
     }

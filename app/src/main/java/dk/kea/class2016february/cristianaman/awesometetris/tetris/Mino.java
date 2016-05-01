@@ -1,59 +1,42 @@
 package dk.kea.class2016february.cristianaman.awesometetris.tetris;
 
 /**
- * Created by mancr on 12/04/2016.
+ * Created by mancr on 21/04/2016.
  */
-public class Mino
+public enum Mino
 {
+    Z_RED_Block,
+    L_ORANGE_Block,
+    Square_YELLOW_Block,
+    S_GREEN_Block,
+    J_SKY_Block,
+    T_BLUE_Block,
+    I_PINK_Block,
+    Ghost,
+    Blank;
+
     public static final float WIDTH = 20;
     public static final float HEIGHT = 20;
-    private BlockType type;
-    private float velocity;
 
-    public Mino()
-    {
-        this(BlockType.Blank);
-    }
-
-    public Mino(BlockType type)
-    {
-        this(type, 1.0f);
-    }
-
-    public Mino(BlockType type, float velocity)
-    {
-        this.type = type;
-        this.velocity = velocity;
-    }
-
-    public Mino copy()
-    {
-        return new Mino(type, velocity);
-    }
-
-    public void set(BlockType type, float velocity)
-    {
-        this.type = type;
-        this.velocity = velocity;
-    }
-
-    public BlockType getType()
-    {
-        return type;
-    }
-
-    public void setType(BlockType type)
-    {
-        this.type = type;
-    }
-
-    public float getVelocity()
-    {
-        return velocity;
-    }
-
-    public void setVelocity(float velocity)
-    {
-        this.velocity = velocity;
+    public static Mino fromInteger(int x) {
+        switch(x) {
+            case 0:
+                return Z_RED_Block;
+            case 1:
+                return L_ORANGE_Block;
+            case 2:
+                return Square_YELLOW_Block;
+            case 3:
+                return S_GREEN_Block;
+            case 4:
+                return J_SKY_Block;
+            case 5:
+                return T_BLUE_Block;
+            case 6:
+                return I_PINK_Block;
+            case 7:
+                return Ghost;
+        }
+        return Blank;
     }
 }

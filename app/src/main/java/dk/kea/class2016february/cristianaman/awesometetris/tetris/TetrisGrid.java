@@ -1,10 +1,6 @@
 package dk.kea.class2016february.cristianaman.awesometetris.tetris;
 
-import android.util.Log;
-
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -26,10 +22,10 @@ public class TetrisGrid
         random = new Random();
         gameOver = false;
         grid = new Mino[WIDTH][HEIGHT];
-        ghost = new Tetramino(BlockType.Ghost);
+        ghost = new Tetramino(Mino.Ghost);
         for (int i = 0; i < WIDTH; i++)
             for (int j = 0; j < HEIGHT; j++)
-                grid[i][j] = new Mino(BlockType.Blank, 0);
+                grid[i][j] = Mino.Blank;
 
     }
 
@@ -37,20 +33,12 @@ public class TetrisGrid
     {
         for (int i = 0; i < WIDTH; i++)
             for (int j = 0; j < HEIGHT; j++)
-                grid[i][j].set(BlockType.Blank, 0);      // NULL MINO HAS TYPE -1 and velocity 0
+                grid[i][j] = Mino.Blank;
     }
 
     public Mino[][] get()
     {
         return grid;
-    }
-
-    public boolean hasMino(int x, int y)
-    {
-        // Check if the position is on the tetris grid
-        if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
-            return false;
-        return !isSpaceOn(x, y);
     }
 
     /**
@@ -66,18 +54,7 @@ public class TetrisGrid
         if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
             return false;
 
-        BlockType type = getMino(x, y).getType();
-        return type.equals(BlockType.Blank) || type.equals(BlockType.Ghost);
-    }
-
-    public Mino getMino(int x, int y)
-    {
-        return grid[x][y];
-    }
-
-    public void setMino(int x, int y, BlockType type, float velocity)
-    {
-        grid[x][y].set(type, velocity);
+        return grid[x][y].equals(Mino.Blank) || grid[x][y].equals(Mino.Ghost);
     }
 
     /**
@@ -86,7 +63,7 @@ public class TetrisGrid
      */
     public void createTetramino()
     {
-        BlockType type = BlockType.fromInteger(random.nextInt(7));
+        Mino type = Mino.fromInteger(random.nextInt(7));
         tetramino = new Tetramino(type);
         tetramino.addTo(this);
         drawGhost();
@@ -105,9 +82,8 @@ public class TetrisGrid
         if (!isSpaceOn(newX, newY))
             throw new RuntimeException("Minos can't overlap");
 
-        Mino mino = getMino(currentX, currentY);
-        setMino(newX, newY, mino.getType(), mino.getVelocity());
-        setMino(currentX, currentY, BlockType.Blank, 0);
+        grid[newX][newY] = grid[currentX][currentY];
+        grid[currentX][currentY] = Mino.Blank;
     }
 
     /**
@@ -180,10 +156,10 @@ public class TetrisGrid
     public void rotateTetramino()
     {
         for (Position position : tetramino.positions)
-            setMino(position.x, position.y, BlockType.Blank, 0);
+            grid[position.x][position.y] = Mino.Blank;
         tetramino.rotate();
         for (Position position : tetramino.positions)
-            setMino(position.x, position.y, tetramino.getType(), 1);
+            grid[position.x][position.y] = tetramino.getType();
         drawGhost();
     }
 
@@ -207,7 +183,7 @@ public class TetrisGrid
         int minoCount = 0;
         for (int x = 0; x < WIDTH; x++)
         {
-            if (hasMino(x, indexY))
+            if (!isSpaceOn(x, indexY))
                 minoCount++;
         }
         return minoCount == WIDTH;
@@ -218,9 +194,7 @@ public class TetrisGrid
         for (int y = indexY; y > 0; y--)
             for (int x = 0; x < WIDTH; x++)
             {
-//                grid[x][y] = grid[x][y-1]
-                Mino minoAbove = getMino(x, y - 1);
-                setMino(x, y, minoAbove.getType(), minoAbove.getVelocity());
+                grid[x][y] = grid[x][y-1];
             }
     }
 
@@ -233,7 +207,7 @@ public class TetrisGrid
 
             // Clear minos on old ghost positions
             if (isSpaceOn(ghostP.x, ghostP.y))
-                setMino(ghostP.x, ghostP.y, BlockType.Blank, 0);
+                grid[ghostP.x][ghostP.y] = Mino.Blank;
 
             // Set new position for ghost which is the current position for the tetramino
             ghostP.x = pieceP.x;
@@ -250,7 +224,7 @@ public class TetrisGrid
         for (Position position : ghost.positions)
         {
             if (isSpaceOn(position.x, position.y))
-                setMino(position.x, position.y, BlockType.Ghost, 0);
+                grid[position.x] [position.y] = Mino.Ghost;
         }
 
     }
