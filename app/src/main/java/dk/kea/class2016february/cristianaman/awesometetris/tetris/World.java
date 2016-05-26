@@ -31,7 +31,7 @@ public class World
     public void update(float deltaTime, float accelX, boolean isTapped, boolean isDropped)
     {
         fallTime += deltaTime;
-        if (fallTime > 0.5f) // TODO fall time is affected by level
+        if (fallTime > 2 - 0.25 * Statistics.level) // Fall time is affected by level
         {
             // FALL
             if (grid.moveIsPossible(0, 1))
@@ -53,8 +53,6 @@ public class World
         moveTime += (Math.abs(accelX) < 1.5) ? 0 : Math.abs(Math.abs(accelX / 2) - 1.5f);
 
         if (offX != 0)
-//            Log.d("WORLD", " OFFX = " + offX);
-            Log.d("ACCEL", accelX + "");
         if (grid.moveIsPossible(offX, 0) && moveTime > 10)
         {
             grid.moveTetramino(offX, 0);
@@ -69,6 +67,8 @@ public class World
         if (isDropped)
         {
             grid.drop();
+            grid.removeLines();
+            grid.createTetramino();
         }
 
     }

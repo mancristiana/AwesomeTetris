@@ -1,6 +1,8 @@
 package dk.kea.class2016february.cristianaman.awesometetris.tetris;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.Log;
 
 import java.util.List;
@@ -19,6 +21,7 @@ public class GameScreen extends Screen
     Bitmap resume;
     Bitmap gameOver;
 
+    Typeface font;
     World world;
     WorldRenderer renderer;
 
@@ -30,6 +33,7 @@ public class GameScreen extends Screen
         background = game.loadBitmap("background.png");
         resume = game.loadBitmap("resume.png");
         gameOver = game.loadBitmap("gameover.png");
+        font = game.loadFont("font.TTF");
         Log.d("GameScreen constructor", "");
         world = new World();
         renderer = new WorldRenderer(game, world);
@@ -75,6 +79,15 @@ public class GameScreen extends Screen
         if (state == State.GameOver)
         {
             game.drawBitmap(gameOver, 160 - gameOver.getWidth() / 2, 240 - gameOver.getHeight() / 2);
+        }
+
+        game.drawText(font, Integer.toString(Statistics.score),         248, 87, Color.parseColor("#7e3272"), 20);
+        game.drawText(font, Integer.toString(Statistics.linesCount),    248, 177, Color.parseColor("#323392"), 20);
+        game.drawText(font, Integer.toString(Statistics.level),         248, 267, Color.parseColor("#0074a2"), 20);
+        if(Statistics.comboBonus > 1)
+        {
+            game.drawText(font, "COMBO",  248, 357, Color.parseColor("#1b7f34"), 18);
+            game.drawText(font, " x " + Integer.toString(Statistics.comboBonus),    248, 387, Color.parseColor("#c98f09"), 25);
         }
     }
 

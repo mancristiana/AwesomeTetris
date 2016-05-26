@@ -165,16 +165,30 @@ public class TetrisGrid
 
     public void removeLines()
     {
+        Statistics.linesAtOnce = 0;
         int y = HEIGHT - 1;
         while (y >= 0)
         {
             if (isCompleteLine(y))
             {
+                Statistics.linesCount++;
+                Statistics.linesAtOnce++;
                 removeLine(y);
             } else
             {
                 y--;
             }
+        }
+
+        if (Statistics.linesAtOnce == 0)
+        {
+            Statistics.comboBonus = 0;
+        } else
+        {
+            Statistics.comboBonus++;
+            Statistics.score += (int) Math.pow(2, Statistics.linesAtOnce) * Statistics.comboBonus;
+            if (Statistics.linesCount > Statistics.levelToLines())
+                Statistics.level++;
         }
     }
 
