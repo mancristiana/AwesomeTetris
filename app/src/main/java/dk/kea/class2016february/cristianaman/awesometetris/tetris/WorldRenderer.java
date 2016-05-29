@@ -13,10 +13,10 @@ public class WorldRenderer
     World world;
     Bitmap tetriminiosImage;
 
-    public WorldRenderer(Game game, World world)
+    public WorldRenderer(Game game)
     {
         this.game = game;
-        this.world = world;
+        this.world = new World();
         this.tetriminiosImage = game.loadBitmap("tetriminios.png");
     }
 

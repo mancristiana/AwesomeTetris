@@ -9,9 +9,9 @@ public enum Mino
     L_ORANGE_Block,
     Square_YELLOW_Block,
     S_GREEN_Block,
-    J_SKY_Block,
-    T_BLUE_Block,
-    I_PINK_Block,
+    I_SKY_Block,
+    J_BLUE_Block,
+    T_PINK_Block,
     Ghost,
     Blank;
 
@@ -29,11 +29,11 @@ public enum Mino
             case 3:
                 return S_GREEN_Block;
             case 4:
-                return J_SKY_Block;
+                return I_SKY_Block;
             case 5:
-                return T_BLUE_Block;
+                return J_BLUE_Block;
             case 6:
-                return I_PINK_Block;
+                return T_PINK_Block;
             case 7:
                 return Ghost;
         }

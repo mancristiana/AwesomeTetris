@@ -22,7 +22,6 @@ public class GameScreen extends Screen
     Bitmap gameOver;
 
     Typeface font;
-    World world;
     WorldRenderer renderer;
 
     State state = State.Running;
@@ -35,8 +34,7 @@ public class GameScreen extends Screen
         gameOver = game.loadBitmap("gameover.png");
         font = game.loadFont("font.TTF");
         Log.d("GameScreen constructor", "");
-        world = new World();
-        renderer = new WorldRenderer(game, world);
+        renderer = new WorldRenderer(game);
 
     }
 
@@ -44,7 +42,7 @@ public class GameScreen extends Screen
     public void update(float deltaTime)
     {
         // set state based on world
-        if (world.grid.isGameOver()) state = State.GameOver;
+        if (renderer.world.grid.isGameOver()) state = State.GameOver;
 
         // set state on touch
         if (state == State.Paused && game.getTouchEvents().size() > 0) // if touched when paused
@@ -66,7 +64,7 @@ public class GameScreen extends Screen
         {
             boolean isTapped = game.isTouchEventUp();
             boolean isDropped = game.isTouchEventUp() && game.getTouchY(0) > 400;
-            world.update(deltaTime, game.getAccelerometer()[0], isTapped && !isDropped, isDropped);
+            renderer.world.update(deltaTime, game.getAccelerometer()[0], isTapped && !isDropped, isDropped);
         }
 
         game.drawBitmap(background, 0, 0);

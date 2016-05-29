@@ -186,9 +186,8 @@ public class TetrisGrid
         } else
         {
             Statistics.comboBonus++;
-            Statistics.score += (int) Math.pow(2, Statistics.linesAtOnce) * Statistics.comboBonus;
-            if (Statistics.linesCount > Statistics.levelToLines())
-                Statistics.level++;
+            Statistics.increaseScore();
+            Statistics.increaseLevel();
         }
     }
 

@@ -58,19 +58,19 @@ public class Tetramino
                 positions.add(new Position(initialX - 1, initialY + 1));
                 positions.add(new Position(initialX, initialY + 1));
                 break;
-            case J_SKY_Block: // Reversed L Block
+            case J_BLUE_Block: // Reversed L Block
                 positions.add(new Position(initialX - 1, initialY));
                 positions.add(new Position(initialX - 1, initialY + 1));
                 positions.add(new Position(initialX, initialY + 1));
                 positions.add(new Position(initialX + 1, initialY + 1));
                 break;
-            case T_BLUE_Block: // T Block
+            case T_PINK_Block: // T Block
                 positions.add(new Position(initialX, initialY));
                 positions.add(new Position(initialX - 1, initialY + 1));
                 positions.add(new Position(initialX, initialY + 1));
                 positions.add(new Position(initialX + 1, initialY + 1));
                 break;
-            case I_PINK_Block: // I Block
+            case I_SKY_Block: // I Block
                 positions.add(new Position(initialX - 1, initialY));
                 positions.add(new Position(initialX, initialY));
                 positions.add(new Position(initialX + 1, initialY));
@@ -136,7 +136,6 @@ public class Tetramino
     {
         List<Position> rotatedPositions = new ArrayList<>();
 
-
         for (Position position : positions)
         {
             rotatedPositions.add(findNewPosition(position));
@@ -147,7 +146,7 @@ public class Tetramino
     public Position findNewPosition(Position p)
     {
         int size = 3;
-        if (type.equals(Mino.I_PINK_Block)) size = 4;
+        if (type.equals(Mino.I_SKY_Block)) size = 4;
         else if (type.equals(Mino.Square_YELLOW_Block))
             return p;
 

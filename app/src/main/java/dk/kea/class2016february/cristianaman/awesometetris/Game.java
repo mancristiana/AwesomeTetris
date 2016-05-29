@@ -310,32 +310,6 @@ public abstract class Game extends Activity implements Runnable, View.OnKeyListe
         canvas.drawBitmap(bitmap, src, dst, null);
     }
 
-    public Music loadMusic(String fileName)
-    {
-        try
-        {
-            AssetFileDescriptor assetFileDescriptor = getAssets().openFd(fileName);
-            return new Music(assetFileDescriptor);
-        } catch (IOException e)
-        {
-            throw new RuntimeException("Could not load music file: " + fileName);
-        }
-    }
-
-    public Sound loadSound(String fileName)
-    {
-        try
-        {
-            AssetFileDescriptor assetFileDescriptor = getAssets().openFd(fileName);
-            int soundId = soundPool.load(assetFileDescriptor, 0);
-            Sound sound = new Sound(soundPool, soundId);
-            return sound;
-        } catch (IOException e)
-        {
-            throw new RuntimeException("Could not load sound file: " + fileName + " BAD ERROR!!!");
-        }
-    }
-
     public void clearFramebuffer(int color)
     {
         if (canvas != null) canvas.drawColor(color);
